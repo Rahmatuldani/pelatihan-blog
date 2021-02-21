@@ -16,9 +16,10 @@ class Auth extends CI_Controller {
 	{
 		$this->form_validation->set_rules('email', 'Email', 'required');
 		$this->form_validation->set_rules('pass', 'Password', 'required');
+		$data = array('title' => 'Blogspot');
 
 		if ($this->form_validation->run() == false) {
-			$this->load->view('auth/layout/header');
+			$this->load->view('auth/layout/header', $data);
 			$this->load->view('auth/login');
 			$this->load->view('auth/layout/footer');
 		} else {
@@ -50,9 +51,10 @@ class Auth extends CI_Controller {
 		$this->form_validation->set_rules('username', 'Username', 'required');
 		$this->form_validation->set_rules('email', 'Email', 'required|is_unique[users.email]', array('is_unique' => $this->session->set_flashdata('unique', '<div class="alert alert-danger" role="alert">Email already exists!</div>')));
 		$this->form_validation->set_rules('pass', 'Password', 'required');
+		$data = array('title' => 'Blogspot');
 
 		if ($this->form_validation->run() == false) {
-			$this->load->view('auth/layout/header');
+			$this->load->view('auth/layout/header',$data);
 			$this->load->view('auth/register');
 			$this->load->view('auth/layout/footer');
 		} else {

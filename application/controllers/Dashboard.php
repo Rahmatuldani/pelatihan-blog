@@ -18,8 +18,9 @@ class Dashboard extends CI_Controller {
 	{
 		$data = array(
 			'post' => $this->post->get_post($this->session->userdata('id')),
+			'title' => 'Blogspot',
 		);
-		$this->load->view('template/header');
+		$this->load->view('template/header',$data);
 		$this->load->view('dashboard', $data);
 		$this->load->view('template/footer');
 	}
@@ -29,9 +30,10 @@ class Dashboard extends CI_Controller {
 		$this->form_validation->set_rules('title', 'Title', 'required');
 		$this->form_validation->set_rules('subtitle', 'Subtitle', 'required');
 		$this->form_validation->set_rules('desc', 'Post', 'required');
+		$data = array('title' => 'Blogspot');
 
 		if ($this->form_validation->run() == false) {
-			$this->load->view('template/header');
+			$this->load->view('template/header',$data);
 			$this->load->view('create_posting');
 			$this->load->view('template/footer');
 		} else {
@@ -61,6 +63,7 @@ class Dashboard extends CI_Controller {
 	{
 		$data = array(
 			'post' => $this->post->get($id),
+			'title' => 'Blogspot',
 		);
 
 		$this->form_validation->set_rules('title', 'Title', 'required');
@@ -68,7 +71,7 @@ class Dashboard extends CI_Controller {
 		$this->form_validation->set_rules('desc', 'Post', 'required');
 
 		if ($this->form_validation->run() == false) {
-			$this->load->view('template/header');
+			$this->load->view('template/header',$data);
 			$this->load->view('edit_posting', $data);
 			$this->load->view('template/footer');
 		} else {
@@ -98,7 +101,8 @@ class Dashboard extends CI_Controller {
 
 	public function profile()
 	{
-		$this->load->view('template/header');
+		$data = array('title' => 'Blogspot');
+		$this->load->view('template/header',$data);
 		$this->load->view('profile');
 		$this->load->view('template/footer');
 	}
@@ -108,9 +112,10 @@ class Dashboard extends CI_Controller {
 		$this->form_validation->set_rules('username', 'Username', 'required');
 
 		$this->load->model('users');
+		$data = array('title' => 'Blogspot');
 
 		if ($this->form_validation->run() == false) {
-			$this->load->view('template/header');
+			$this->load->view('template/header',$data);
 			$this->load->view('profile');
 			$this->load->view('template/footer');
 		} else {
